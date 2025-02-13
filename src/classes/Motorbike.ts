@@ -25,7 +25,7 @@ class Motorbike extends Vehicle {
     year: number,
     weight: number,
     topSpeed: number,
-    wheels: Wheel[]
+    wheels: Wheel[] = [new Wheel(), new Wheel()]
   ) {
     // TODO: The constructor should call the constructor of the parent class, Vehicle
     super();
@@ -39,7 +39,7 @@ class Motorbike extends Vehicle {
     this.topSpeed = topSpeed;
     // TODO: The constructor should check if the wheels array has 2 elements and create 2 new default Wheel objects if it does not
     if (wheels.length !== 2) {
-      this.wheels = [new Wheel(), new Wheel()];
+      this.wheels = [new Wheel(), new Wheel(),];
     } else {
       this.wheels = wheels;
     }
