@@ -17,8 +17,11 @@ Any contribution please fork the repository and add messages of what was updated
 ## Tests
 None
 
+## Notes 
+Used copilot, tutor and Xassistance to complete this project. 
 
-
+## Video Link 
+https://drive.google.com/file/d/1B8iYBvh6aSFC-JVoqLhdt4AB2HWNufaD/view
 
 ## Questions
 For any questions, please contact me at [stricklandmba2011@gmail.com](mailto:stricklandmba2011@gmail.com).
