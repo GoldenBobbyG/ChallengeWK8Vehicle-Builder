@@ -195,7 +195,7 @@ class Cli {
         },
         
       ])
-      .then((answers: { color: string; make: string; model: string; year: string; weight: string; topSpeed: string; towingCapacity: string; frontWheelDiameter: string; frontWheelBrand: string; rearWheelDiameter: string; rearWheelBrand: string;}) => {
+      .then((answers) => {
         // TODO: Use the answers object to pass the required properties to the Truck constructor
         // TODO: push the truck to the vehicles array
         // TODO: set the selectedVehicleVin to the vin of the truck
@@ -209,11 +209,8 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
+          [],
           parseInt(answers.towingCapacity),
-          [
-            new Wheel(parseInt(answers.frontWheelDiameter), answers.frontWheelBrand),
-            new Wheel(parseInt(answers.rearWheelDiameter), answers.rearWheelBrand),
-          ]
         );
         // push the car to the vehicles array
         this.vehicles.push(truck);
