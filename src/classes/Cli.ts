@@ -368,6 +368,7 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].printDetails();
+              this.performActions();
             }
           }
         } else if (answers.action === 'Start vehicle') {
@@ -375,6 +376,7 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].start();
+              this.performActions();
             }
           }
         } else if (answers.action === 'Accelerate 5 MPH') {
@@ -382,6 +384,7 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].accelerate(5);
+              this.performActions();
             }
           }
         } else if (answers.action === 'Decelerate 5 MPH') {
@@ -389,6 +392,7 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].decelerate(5);
+              this.performActions();
             }
           }
         } else if (answers.action === 'Stop vehicle') {
@@ -396,6 +400,7 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].stop();
+              this.performActions();
             }
           }
         } else if (answers.action === 'Turn right') {
@@ -403,6 +408,7 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].turn('right');
+              this.performActions();
             }
           }
         } else if (answers.action === 'Turn left') {
@@ -410,6 +416,7 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].turn('left');
+              this.performActions();
             }
           }
         } else if (answers.action === 'Reverse') {
@@ -417,6 +424,7 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].reverse();
+              this.performActions();
             }
           }
         }
@@ -433,6 +441,7 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Motorbike) {
               (this.vehicles[i] as Motorbike).wheelie();
+              this.performActions();
             }
           }
         } else if (answers.action === 'Select or create another vehicle') {
