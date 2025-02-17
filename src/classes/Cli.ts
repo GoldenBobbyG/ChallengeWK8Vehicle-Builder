@@ -8,8 +8,13 @@ import Wheel from "./Wheel.js";
 // define the Cli class
 class Cli {
   // TODO: update the vehicles property to accept Truck and Motorbike objects as well
+
   // TODO: You will need to use the Union operator to define additional types for the array
+
   // TODO: See the AbleToTow interface for an example of how to use the Union operator
+  
+  // This commit will update the vehicles propert to create a union type of Car, Truck, and Motorbike
+
   vehicles: (Car | Truck | Motorbike)[];
   selectedVehicleVin: string | undefined;
   exit: boolean = false;
@@ -70,6 +75,8 @@ class Cli {
           this.createCar();
         }
         // TODO: add statements to create a truck or motorbike if the user selects the respective vehicle type
+       
+        // This else statement will create a truck if the user selects the truck option
         else if (answers.vehicleType === 'Truck') {
           this.createTruck();
         } else {
@@ -116,6 +123,8 @@ class Cli {
       .then((answers: { color: string; make: string; model: string; year: string; weight: string; topSpeed: string; }) => {
         const car = new Car(
           // TODO: The generateVin method is static and should be called using the class name Cli, make sure to use Cli.generateVin() for creating a truck and motorbike as well!
+
+          // This commit will update the generateVin method to be called using the class name Cli
           Cli.generateVin(),
           answers.color,
           answers.make,
@@ -200,6 +209,8 @@ class Cli {
         // TODO: push the truck to the vehicles array
         // TODO: set the selectedVehicleVin to the vin of the truck
         // TODO: perform actions on the truck
+
+        //This commit will use the answers object to pass the required properties to the Truck constructor and create a truck.
         const truck = new Truck(
 
           Cli.generateVin(),
@@ -281,6 +292,9 @@ class Cli {
         // TODO: push the motorbike to the vehicles array
         // TODO: set the selectedVehicleVin to the vin of the motorbike
         // TODO: perform actions on the motorbike
+
+        // This commit will use the answers object to pass the required properties to the Motorbike constructor and create a motorbike
+
         const motorbike = new Motorbike(
 
           Cli.generateVin(),
@@ -307,6 +321,8 @@ class Cli {
   // method to find a vehicle to tow
   // TODO: add a parameter to accept a truck object
 
+  // This commit will add a parameter to accept a truck object and create a method to find a vehicle to tow.
+
   findVehicleToTow(truck: Truck): void {
     inquirer
       .prompt([
@@ -326,6 +342,8 @@ class Cli {
         // TODO: check if the selected vehicle is the truck
         // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
         // TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
+
+        // This commit will check if the selected vehicle is the truck, if it is, log that the truck cannot tow itself then performs actions. 
         if (answers.vehicleToTow.vin === truck.vin) {
           console.log('A truck cannot tow itself');
           this.performActions();
@@ -345,6 +363,8 @@ class Cli {
           name: 'action',
           message: 'Select an action',
           // TODO: add options to tow and wheelie
+
+          // This commit will add options to select choices to the user. 
           choices: [
             'Print details',
             'Start vehicle',
@@ -430,6 +450,8 @@ class Cli {
         }
         // TODO: add statements to perform the tow action only if the selected vehicle is a truck. Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument. After calling the findVehicleToTow method, you will need to return to avoid instantly calling the performActions method again since findVehicleToTow is asynchronous.
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
+
+        // This commit will perform the tow action if statment. 
         if (answers.action === 'Tow') {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Truck) {
@@ -454,6 +476,8 @@ class Cli {
         }
         if (!this.exit) {
           // if the user does not want to exit, perform actions on the selected vehicle
+
+          //This will perform a action to return to the initial prompt action.
           this.performActions();
         }
       });

@@ -7,6 +7,8 @@ class Motorbike extends Vehicle {
 // TODO: Declare properties of the Motorbike class
 // TODO: The properties should include vin, color, make, model, year, weight, top speed, and wheels
 // TODO: The types should be as follows: vin (string), color (string), make (string), model (string), year (number), weight (number), topSpeed (number), wheels (Wheel[])
+
+//This is declaring the properties of the Motorbike class.
   vin: string;
   color: string;
   make: string;
@@ -28,6 +30,8 @@ class Motorbike extends Vehicle {
     wheels: Wheel[] = [new Wheel(), new Wheel()]
   ) {
     // TODO: The constructor should call the constructor of the parent class, Vehicle
+
+    //This will call the constructor of the parent class, Vehicle and pass the properties of the Motorbike class to it.
     super();
     // TODO: The constructor should initialize the properties of the Motorbike class
     this.vin = vin;
@@ -38,6 +42,8 @@ class Motorbike extends Vehicle {
     this.weight = weight;
     this.topSpeed = topSpeed;
     // TODO: The constructor should check if the wheels array has 2 elements and create 2 new default Wheel objects if it does not
+
+    //This if statment checks if the wheels array 2 wheels and if it does not it will create 2 new default Wheel objects.
     if (wheels.length !== 2) {
       this.wheels = [new Wheel(), new Wheel(),];
     } else {
@@ -47,6 +53,8 @@ class Motorbike extends Vehicle {
 
   // TODO: Implement the wheelie method
   // TODO: The method should log the message "Motorbike [make] [model] is doing a wheelie!"
+
+  //This method will log the message "Motorbike [make] [model] is doing a wheelie!"
   wheelie(): void {
     console.log(`Motorbike ${this.make} ${this.model} is doing a wheelie!`);
   }
@@ -55,6 +63,8 @@ class Motorbike extends Vehicle {
   // TODO: The method should call the printDetails method of the parent class
   // TODO: The method should log the details of the Motorbike
   // TODO: The details should include the VIN, make, model, year, weight, top speed, color, and wheels
+
+  //This method will override the printDetails method from the Vehicle class and log the details of the Motorbike.
   override printDetails(): void {
     super.printDetails();
     console.log(`VIN: ${this.vin}`);
