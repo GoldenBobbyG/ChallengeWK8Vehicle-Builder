@@ -4,6 +4,7 @@ import Truck from "./Truck.js";
 import Car from "./Car.js";
 import Motorbike from "./Motorbike.js";
 import Wheel from "./Wheel.js";
+import { it } from "node:test";
 
 // define the Cli class
 class Cli {
@@ -452,17 +453,34 @@ class Cli {
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
 
         // This commit will perform the tow action if statment. 
-        if (answers.action === 'Tow') {
-          for (let i = 0; i < this.vehicles.length; i++) {
-            if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Truck) {
-              this.findVehicleToTow(this.vehicles[i] as Truck);
-              return;
-            }
+       else if (answers.action === 'Tow') {
+          let truck: Truck|undefined;
+
+        for (let i = 0; i < this.vehicles.length; i++) {
+          if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Truck) {
+            truck = this.vehicles[i] as Truck;
           }
-        } else if (answers.action === 'Wheelie') {
+        }
+        if (truck) {
+          this.findVehicleToTow(truck);
+          return;
+        } else {
+          console.log('This action is only available for Trucks');
+        }
+       }
+        else if (answers.action === 'Wheelie') {
+          let motorbike: Motorbike | undefined;
+          
           for (let i = 0; i < this.vehicles.length; i++) {
-            if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Motorbike) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Motorbike){
+              motorbike = this.vehicles[i] as Motorbike;
+            } 
+
+          if (motorbike) {
               (this.vehicles[i] as Motorbike).wheelie();
+              return;
+            } else {
+              console.log('This action is only available for Motorbikes');
               this.performActions();
             }
           }
