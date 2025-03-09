@@ -17,6 +17,7 @@ class Motorbike extends Vehicle {
   weight: number;
   topSpeed: number;
   wheels: Wheel[];
+  performWheelie: any;
   // TODO: Create a constructor that accepts the properties of the Motorbike class
   
   constructor(

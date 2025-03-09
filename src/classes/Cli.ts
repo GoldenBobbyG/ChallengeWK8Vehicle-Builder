@@ -1,11 +1,11 @@
-// importing classes from other files
+import { EventEmitter } from 'events';
 import inquirer from "inquirer";
 import Truck from "./Truck.js";
 import Car from "./Car.js";
 import Motorbike from "./Motorbike.js";
 import Wheel from "./Wheel.js";
-import { it } from "node:test";
 
+EventEmitter.defaultMaxListeners = 20;
 // define the Cli class
 class Cli {
   // TODO: update the vehicles property to accept Truck and Motorbike objects as well
@@ -19,6 +19,7 @@ class Cli {
   vehicles: (Car | Truck | Motorbike)[];
   selectedVehicleVin: string | undefined;
   exit: boolean = false;
+  wheelie: any;
 
   // TODO: Update the constructor to accept Truck and Motorbike objects as well
   constructor(vehicles: (Car | Truck | Motorbike)[]) {
@@ -389,7 +390,6 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].printDetails();
-              this.performActions();
             }
           }
         } else if (answers.action === 'Start vehicle') {
@@ -397,7 +397,6 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].start();
-              this.performActions();
             }
           }
         } else if (answers.action === 'Accelerate 5 MPH') {
@@ -405,7 +404,6 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].accelerate(5);
-              this.performActions();
             }
           }
         } else if (answers.action === 'Decelerate 5 MPH') {
@@ -413,7 +411,6 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].decelerate(5);
-              this.performActions();
             }
           }
         } else if (answers.action === 'Stop vehicle') {
@@ -421,7 +418,6 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].stop();
-              this.performActions();
             }
           }
         } else if (answers.action === 'Turn right') {
@@ -429,7 +425,6 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].turn('right');
-              this.performActions();
             }
           }
         } else if (answers.action === 'Turn left') {
@@ -437,7 +432,6 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].turn('left');
-              this.performActions();
             }
           }
         } else if (answers.action === 'Reverse') {
@@ -445,7 +439,6 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].reverse();
-              this.performActions();
             }
           }
         }
@@ -474,16 +467,22 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Motorbike){
               motorbike = this.vehicles[i] as Motorbike;
+              break;
             } 
-
+          }
           if (motorbike) {
-              (this.vehicles[i] as Motorbike).wheelie();
+            try {
+              motorbike.wheelie();  
+              this.performActions();
+            } catch (error) {
+              console.log('An error occurred while performing the wheelie');
+            }
               return;
             } else {
               console.log('This action is only available for Motorbikes');
-              this.performActions();
+            
             }
-          }
+          
         } else if (answers.action === 'Select or create another vehicle') {
           // start the cli to return to the initial prompt if the user wants to select or create another vehicle
           this.startCli();
